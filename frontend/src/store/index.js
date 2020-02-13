@@ -17,7 +17,6 @@ export default new Vuex.Store({
     setProjects(state, projects) {
       // eslint-disable-next-line no-param-reassign
       state.projects = projects;
-      console.log(projects);
     },
   },
   actions: {

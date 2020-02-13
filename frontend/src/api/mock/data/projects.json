@@ -1,16 +1,26 @@
-{
-  "projects": [
+[
     {
-      "id": 1,
-      "title": "PK One",
-      "toDo": [
-        {
-          "id": 1,
-          "title": "TK One",
-          "creationDate": "13/02/2020",
-          "description": "First Description"
-        }
-      ]
+        "id": 2,
+        "title": "PK One",
+        "toDo": [
+            {
+                "id": 2,
+                "title": "TK One",
+                "creationDate": "23/02/2020",
+                "description": "First Description"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "title": "PK Two",
+        "toDo": [
+            {
+                "id": 2,
+                "title": "TK Two",
+                "creationDate": "23/02/2020",
+                "description": "Second Description"
+            }
+        ]
     }
-  ]
-}
+]
