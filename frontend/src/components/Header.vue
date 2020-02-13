@@ -32,14 +32,20 @@ export default {
 <style scoped>
 .header {
   display: grid;
-  margin-bottom: 3rem;
+  background: rgb(204, 99, 71);
+  width: 100vw;
+  z-index: 1;
+  grid-template-columns: repeat(5, 1fr);
 }
 
 .presentation {
   text-align: left;
+  grid-column: 2;
 }
 
 .nav {
+  grid-column: 3/5;
+
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   align-items: center;
@@ -54,10 +60,6 @@ export default {
 
 .header a.router-link-exact-active {
   color: #42b983;
-}
-
-.header {
-  grid-template-columns: repeat(2, 1fr);
 }
 
 .nav span{
