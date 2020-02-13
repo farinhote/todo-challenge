@@ -1,10 +1,11 @@
 <template>
   <div class="header">
     <div class="presentation">
-      <router-link to="/"></router-link>
-      <div class="presentationText">
-        <h1>{{ $t("header.title") }}</h1>
-      </div>
+      <router-link to="/">
+        <div class="presentationText">
+          <h1>{{ $t("header.title") }}</h1>
+        </div>
+      </router-link>
     </div>
     <div class="nav" v-if="this.$store.state.user.id">
       <span>{{ this.$store.state.user.name }}</span>
@@ -43,6 +44,11 @@ export default {
   grid-column: 2;
 }
 
+.presentation a {
+    text-decoration: inherit;
+    cursor: pointer;
+}
+
 .nav {
   grid-column: 3/5;
 
@@ -62,7 +68,7 @@ export default {
   color: #42b983;
 }
 
-.nav span{
+.nav span {
   grid-column: 2/4;
   text-align: right;
 }

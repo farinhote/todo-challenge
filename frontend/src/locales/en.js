@@ -1,12 +1,20 @@
 const ENGLISH_TRANSLATIONS = {
   mainPage: {
-    title: 'Todo',
+    title: 'To Do',
   },
   header: {
-    title: 'Todo',
+    title: 'To Do',
     signUp: 'Sign up',
     signIn: 'Sign in',
     signOut: 'Sign out',
+  },
+  signUp: {
+    title: 'Sign up',
+    legend: 'Your Info',
+    name: 'Name',
+    email: 'Email',
+    password: 'Password',
+    submit: 'Submit',
   },
 };
 

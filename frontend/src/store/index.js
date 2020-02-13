@@ -8,8 +8,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     user: {
-      name: 'André Farinhote',
-      id: '1',
+      // name: 'André Farinhote',
+      // id: '1',
     },
     projects: {},
   },
