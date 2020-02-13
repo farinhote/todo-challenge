@@ -1,31 +1,29 @@
 <template>
     <li>
-        <span v-on:click="expand">
-            {{ task.title }}
-        </span>
-        <p v-show="open">
-            {{ task.description }}
-        </p>
+        <input v-model="description" />
     </li>
 </template>
 
 <script>
 export default {
   name: 'Task',
-  methods: {
-    expand() {
-      this.open = !this.open;
-    },
-  },
   props: {
-    open: {
-      type: Boolean,
-      default: false,
-    },
+    projectId: Number,
     task: {
       type: Object,
       default() {
         return {};
+      },
+    },
+  },
+
+  computed: {
+    description: {
+      get() {
+        return this.task.description;
+      },
+      set(value) {
+        this.$store.commit('updateTask', { value, taskId: this.task.id, projectId: this.projectId });
       },
     },
   },

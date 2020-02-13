@@ -14,11 +14,8 @@
       </router-link>
     </div>
     <div class="nav" v-else>
-      <router-link to="/sign-up">
+      <router-link to="/sign">
         <span>{{ $t("header.signUp") }}</span>
-      </router-link>
-      <router-link to="/sign-in">
-        <span>{{ $t("header.signIn") }}</span>
       </router-link>
     </div>
   </div>

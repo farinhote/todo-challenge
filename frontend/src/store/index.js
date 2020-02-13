@@ -11,12 +11,16 @@ export default new Vuex.Store({
       // name: 'André Farinhote',
       // id: '1',
     },
-    projects: {},
+    projects: [],
   },
   mutations: {
     setProjects(state, projects) {
       // eslint-disable-next-line no-param-reassign
       state.projects = projects;
+    },
+    updateTask(state, { value, taskId, projectId }) {
+      debugger;
+      state.projects[projectId].tasks[taskId].description = value;
     },
   },
   actions: {

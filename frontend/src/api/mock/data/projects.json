@@ -1,224 +1,149 @@
-[
-    {
-        "id": 1,
+{
+    "1": {
         "title": "PK One",
-        "toDo": [
-            {
-                "id": 1,
-                "title": "TK One",
+        "tasks": {
+            "1": {
+                "done": false,
                 "creationDate": "13/02/2020",
                 "description": "First Description"
             },
-            {
-                "id": 2,
-                "title": "TK Two",
+            "12": {
+                "done": false,
                 "creationDate": "13/02/2020",
-                "description": "Second Description Second Description Second Description Second Description Second Description Second Description Second Description Second Description Second Description Second Description Second Description Second Description Second Description Second Description Second Description Second Description Second Description Second Description Second Description Second Description Second Description Second Description Second Description Second Description Second Description Second Description Second Description "
+                "description": "Second Description"
             },
-            {
-                "id": 3,
-                "title": "TK Three",
+            "13": {
+                "done": false,
                 "creationDate": "13/02/2020",
                 "description": "Third Description"
             },
-            {
-                "id": 4,
-                "title": "TK Four",
+            "14": {
+                "done": false,
                 "creationDate": "13/02/2020",
                 "description": "Fourth Description"
+            },
+            "15": {
+                "done": true,
+                "creationDate": "12/02/2020",
+                "finishDate": "13/02/2020",
+                "description": "First Description done"
+            },
+            "16": {
+                "done": true,
+                "creationDate": "12/02/2020",
+                "finishDate": "13/02/2020",
+                "description": "Second Description done"
+            },
+            "17": {
+                "done": true,
+                "creationDate": "12/02/2020",
+                "finishDate": "13/02/2020",
+                "description": "Third Description done"
+            },
+            "18": {
+                "done": true,
+                "creationDate": "12/02/2020",
+                "finishDate": "13/02/2020",
+                "description": "Fourth Description done"
             }
-        ]
+        }
     },
-    {
-        "id": 2,
+    "2": {
         "title": "PK Two",
-        "toDo": [
-            {
-                "id": 5,
-                "title": "TK Two",
-                "creationDate": "23/02/2020",
+        "tasks": {
+            "21": {
+                "done": false,
+                "creationDate": "13/02/2020",
+                "description": "First Description"
+            },
+            "22": {
+                "done": false,
+                "creationDate": "13/02/2020",
                 "description": "Second Description"
+            },
+            "23": {
+                "done": false,
+                "creationDate": "13/02/2020",
+                "description": "Third Description"
+            },
+            "24": {
+                "done": false,
+                "creationDate": "13/02/2020",
+                "description": "Fourth Description"
+            },
+            "25": {
+                "done": true,
+                "creationDate": "12/02/2020",
+                "finishDate": "13/02/2020",
+                "description": "First Description done"
+            },
+            "26": {
+                "done": true,
+                "creationDate": "12/02/2020",
+                "finishDate": "13/02/2020",
+                "description": "Second Description done"
+            },
+            "27": {
+                "done": true,
+                "creationDate": "12/02/2020",
+                "finishDate": "13/02/2020",
+                "description": "Third Description done"
+            },
+            "28": {
+                "done": true,
+                "creationDate": "12/02/2020",
+                "finishDate": "13/02/2020",
+                "description": "Fourth Description done"
             }
-        ]
+        }
     },
-    {
-        "id": 3,
+    "3": {
         "title": "PK Two",
-        "toDo": [
-            {
-                "id": 6,
-                "title": "TK Two",
-                "creationDate": "23/02/2020",
+        "tasks": {
+            "31": {
+                "done": false,
+                "creationDate": "13/02/2020",
+                "description": "First Description"
+            },
+            "32": {
+                "done": false,
+                "creationDate": "13/02/2020",
                 "description": "Second Description"
+            },
+            "33": {
+                "done": false,
+                "creationDate": "13/02/2020",
+                "description": "Third Description"
+            },
+            "34": {
+                "done": false,
+                "creationDate": "13/02/2020",
+                "description": "Fourth Description"
+            },
+            "35": {
+                "done": true,
+                "creationDate": "12/02/2020",
+                "finishDate": "13/02/2020",
+                "description": "First Description done"
+            },
+            "37": {
+                "done": true,
+                "creationDate": "12/02/2020",
+                "finishDate": "13/02/2020",
+                "description": "Second Description done"
+            },
+            "38": {
+                "done": true,
+                "creationDate": "12/02/2020",
+                "finishDate": "13/02/2020",
+                "description": "Third Description done"
+            },
+            "39": {
+                "done": true,
+                "creationDate": "12/02/2020",
+                "finishDate": "13/02/2020",
+                "description": "Fourth Description done"
             }
-        ]
-    },
-    {
-        "id": 4,
-        "title": "PK Two",
-        "toDo": [
-            {
-                "id": 7,
-                "title": "TK Two",
-                "creationDate": "23/02/2020",
-                "description": "Second Description"
-            }
-        ]
-    },
-    {
-        "id": 5,
-        "title": "PK Two",
-        "toDo": [
-            {
-                "id": 8,
-                "title": "TK Two",
-                "creationDate": "23/02/2020",
-                "description": "Second Description"
-            }
-        ]
-    },
-    {
-        "id": 6,
-        "title": "PK Two",
-        "toDo": [
-            {
-                "id": 9,
-                "title": "TK Two",
-                "creationDate": "23/02/2020",
-                "description": "Second Description"
-            }
-        ]
-    },
-    {
-        "id": 7,
-        "title": "PK Two",
-        "toDo": [
-            {
-                "id": 10,
-                "title": "TK Two",
-                "creationDate": "23/02/2020",
-                "description": "Second Description"
-            }
-        ]
-    },
-    {
-        "id": 8,
-        "title": "PK Two",
-        "toDo": [
-            {
-                "id": 11,
-                "title": "TK Two",
-                "creationDate": "23/02/2020",
-                "description": "Second Description"
-            }
-        ]
-    },
-    {
-        "id": 9,
-        "title": "PK Two",
-        "toDo": [
-            {
-                "id": 12,
-                "title": "TK Two",
-                "creationDate": "23/02/2020",
-                "description": "Second Description"
-            }
-        ]
-    },
-    {
-        "id": 10,
-        "title": "PK Two",
-        "toDo": [
-            {
-                "id": 13,
-                "title": "TK Two",
-                "creationDate": "23/02/2020",
-                "description": "Second Description"
-            }
-        ]
-    },
-    {
-        "id": 11,
-        "title": "PK Two",
-        "toDo": [
-            {
-                "id": 14,
-                "title": "TK Two",
-                "creationDate": "23/02/2020",
-                "description": "Second Description"
-            }
-        ]
-    },
-    {
-        "id": 12,
-        "title": "PK Two",
-        "toDo": [
-            {
-                "id": 15,
-                "title": "TK Two",
-                "creationDate": "23/02/2020",
-                "description": "Second Description"
-            }
-        ]
-    },
-    {
-        "id": 13,
-        "title": "PK Two",
-        "toDo": [
-            {
-                "id": 16,
-                "title": "TK Two",
-                "creationDate": "23/02/2020",
-                "description": "Second Description"
-            }
-        ]
-    },
-    {
-        "id": 14,
-        "title": "PK Two",
-        "toDo": [
-            {
-                "id": 17,
-                "title": "TK Two",
-                "creationDate": "23/02/2020",
-                "description": "Second Description"
-            }
-        ]
-    },
-    {
-        "id": 15,
-        "title": "PK Two",
-        "toDo": [
-            {
-                "id": 18,
-                "title": "TK Two",
-                "creationDate": "23/02/2020",
-                "description": "Second Description"
-            }
-        ]
-    },
-    {
-        "id": 16,
-        "title": "PK Two",
-        "toDo": [
-            {
-                "id": 19,
-                "title": "TK Two",
-                "creationDate": "23/02/2020",
-                "description": "Second Description"
-            }
-        ]
-    },
-    {
-        "id": 17,
-        "title": "PK Two",
-        "toDo": [
-            {
-                "id": 20,
-                "title": "TK Two",
-                "creationDate": "23/02/2020",
-                "description": "Second Description"
-            }
-        ]
+        }
     }
-]
+}

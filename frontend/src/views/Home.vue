@@ -20,7 +20,8 @@ export default {
 
   computed: {
     projects() {
-      return this.$store.state.projects;
+      const { projects } = this.$store.state;
+      return Object.keys(projects).map((id) => ({ id, ...projects[id] }));
     },
   },
 

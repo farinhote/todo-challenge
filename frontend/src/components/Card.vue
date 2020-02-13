@@ -4,8 +4,11 @@
       <div class="card-title">
         <h1>{{ project.title }}</h1>
       </div>
-      <div class="card-summary">
-          <task v-for="task in project.toDo" :key="task.id"  :task="task"/>
+      <div class="card-todo">
+        <task v-for="task in todoTasks" :key="task.id" :task="task" :projectId="project.id" />
+      </div>
+      <div class="card-done">
+        <task v-for="task in doneTasks" :key="task.id" :task="task" :projectId="project.id" />
       </div>
     </div>
   </div>
@@ -19,12 +22,26 @@ export default {
   components: {
     Task,
   },
+
   props: {
     project: {
       type: Object,
       default() {
         return {};
       },
+    },
+  },
+
+  computed: {
+    tasks() {
+      return Object.keys(this.project.tasks).map((id) => ({ id, ...this.project.tasks[id] }));
+    },
+
+    doneTasks() {
+      return this.tasks.filter((task) => task.done);
+    },
+    todoTasks() {
+      return this.tasks.filter((task) => !task.done);
     },
   },
 };
@@ -57,12 +74,5 @@ export default {
   color: #333;
   text-align: left;
   line-height: 2.5rem;
-}
-
-.card-summary{
-  padding-top: 1px;
-  color: #4d4d4d;
-  margin: 0 auto;
-  width: 90%;
 }
 </style>
