@@ -5,6 +5,6 @@ body {
 body {
     font-size: calc(16px + 0.1vw);
     line-height: calc(1.1em + 0.2vw);
-    width: 70vw;
+    width: 60vw;
     margin: auto;
 }
