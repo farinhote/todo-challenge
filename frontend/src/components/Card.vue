@@ -32,8 +32,9 @@ export default {
 
 <style scoped>
 .card-container {
+  overflow: auto;
   background: #fff;
-  height: 33vh;
+  height: 45vh;
   border-radius: 6px;
   box-shadow: rgba(0, 0, 0, 0.2) 0 4px 2px -2px;
   font-weight: 100;
@@ -47,13 +48,19 @@ export default {
   position: relative;
 }
 
-.card-title h1 {
-  text-align: left;
+.card-title {
+  position: sticky;
+  padding: 0.1rem;
+  border-bottom: 2px solid rgba(128, 128, 128, 0.5);
+  top: 0px;
+  background: #fff;
   color: #333;
+  text-align: left;
   line-height: 2.5rem;
 }
 
 .card-summary{
+  padding-top: 1px;
   color: #4d4d4d;
   margin: 0 auto;
   width: 90%;
