@@ -19,7 +19,7 @@ module.exports = {
                 next(err);
             } else {
                 for (let project of projects) {
-                    projectsList.push({ id: project._id, name: project.name, tasks: project.tasks });
+                    projectsList.push({ _id: project._id, name: project.name, tasks: project.tasks });
                 }
                 res.json({ status: "success", message: "Projects list found.", data: { projects: projectsList } });
             }
@@ -27,8 +27,16 @@ module.exports = {
     },
 
     updateById: function (req, res, next) {
+        const tasks = req.body.tasks.map((task) => {
+            if(!task.finishDate && task.done) {
+                task.finishDate = new Date().toLocaleDateString("pt");
+            }
+
+            return task;
+        })
+
         projectModel.findOneAndUpdate({ ownerId: req.body.userId, _id: req.params.projectId },
-            { name: req.body.name, tasks: req.body.tasks }, function (err, projectInfo) {
+            { name: req.body.name, tasks: tasks }, function (err, projectInfo) {
                 if (err)
                     next(err);
                 else {

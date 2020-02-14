@@ -5,12 +5,18 @@ const Schema = mongoose.Schema;
 const TaskSchema = new Schema({
     done: {
         type: Boolean,
-        required: true
+        required: true,
+        default: false,
     },
     creationDate: {
         type: String,
         trim: true,
-        required: true
+        required: true,
+        default: new Date().toLocaleDateString("pt"),
+    },
+    finishDate: {
+        type: String,
+        trim: true
     },
     description: {
         type: String,
