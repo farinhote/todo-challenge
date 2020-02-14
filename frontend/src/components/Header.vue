@@ -7,11 +7,9 @@
         </div>
       </router-link>
     </div>
-    <div class="nav" v-if="this.$store.state.user.id">
+    <div class="nav" v-if="this.$store.state.user._id">
       <span>{{ this.$store.state.user.name }}</span>
-      <router-link to="/sign-out">
-        <span>{{ $t("header.signOut") }}</span>
-      </router-link>
+      <a v-on:click="signOut">{{ $t("header.signOut") }}</a>
     </div>
   </div>
 </template>
@@ -19,6 +17,14 @@
 <script>
 export default {
   name: 'Header',
+  methods: {
+    signOut() {
+      this.$store
+        .dispatch('signOut')
+        .then(() => this.$router.push('/sign'))
+        .catch((err) => console.log(err));
+    },
+  },
 };
 </script>
 
