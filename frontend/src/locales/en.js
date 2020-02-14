@@ -3,6 +3,7 @@ const ENGLISH_TRANSLATIONS = {
     todo: 'To Do',
     done: 'Done',
     newTask: 'Create New Task',
+    placeholder: 'Task Name',
   },
   header: {
     title: 'To Do',

@@ -5,15 +5,18 @@
         <h1>{{ project.title }}</h1>
       </div>
       <h2 v-if="todoTasks.length">{{ $t("card.todo") }}</h2>
-      <div class="card-todo">
-        <task v-for="task in todoTasks" :key="task.id" :task="task" :projectId="project.id" />
-      </div>
-      <h2 v-if="doneTasks.length">{{ $t("card.done") }}</h2>
-      <div class="card-done">
-        <task v-for="task in doneTasks" :key="task.id" :task="task" :projectId="project.id" />
+      <div class="card-tasks">
+        <div class="card-todo">
+          <task v-for="task in todoTasks" :key="task.id" :task="task" :projectId="project.id" />
+        </div>
+        <h2 v-if="doneTasks.length">{{ $t("card.done") }}</h2>
+        <div class="card-done">
+          <task v-for="task in doneTasks" :key="task.id" :task="task" :projectId="project.id" />
+        </div>
       </div>
       <div class="card-button">
         <button type="submit">{{ $t("card.newTask") }}</button>
+        <input type="text" :placeholder="this.$t('card.placeholder')"/>
       </div>
     </div>
   </div>
@@ -68,10 +71,12 @@ export default {
 }
 
 .card-body {
+  position: relative;
   margin: 0 auto;
   width: 90%;
-  position: relative;
+  height: 100%;
 }
+
 
 .card-title {
   position: sticky;
@@ -87,23 +92,40 @@ export default {
   text-decoration: line-through;
 }
 
+.card-tasks {
+  height: 100%;
+}
+
 .card-button {
+  display: grid;
+  grid-gap: 6px;
+  grid-template-columns: 1fr 1fr;
+  position: sticky;
   padding: 1rem;
   background: #fff;
-  position: sticky;
   border-top: 2px solid rgba(128, 128, 128, 0.5);
   bottom: 0px;
 }
 
 button {
-  padding: 19px 29px 18px 29px;
+  grid-column: 1/2;
   background-color: #4bc970;
+
   color: #fff;
   font-size: 18px;
   text-align: center;
+
   border-radius: 5px;
   border: 1px solid #3ac162;
   border-width: 1px 1px 3px;
   box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.1) inset;
+}
+
+input {
+  width: 100%;
+  border-bottom: 1px solid gray;
+  background: transparent;
+  font-size: inherit;
+  font-family:inherit;
 }
 </style>
