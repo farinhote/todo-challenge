@@ -9,7 +9,7 @@ export default {
       .then((response) => response.data);
   },
 
-  login(user) {
+  signIn(user) {
     return axios
       .post(`${API_URL}signin`, {
         username: user.username,
@@ -17,18 +17,14 @@ export default {
       })
       .then((response) => {
         if (response.data.accessToken) {
-          localStorage.setItem('user', JSON.stringify(response.data));
+          localStorage.setItem('access_token', JSON.stringify(response.data.accessToken));
         }
 
         return response.data;
       });
   },
 
-  logout() {
-    localStorage.removeItem('user');
-  },
-
-  register(user) {
+  signUp(user) {
     return axios.post(`${API_URL}users/`, {
       name: user.name,
       email: user.email,
