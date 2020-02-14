@@ -19,11 +19,14 @@ module.exports = {
                 next(err);
             } else {
                 for (let project of projects) {
-                    projectsList.push({ _id: project._id, name: project.name, tasks: project.tasks });
+                    // Remove handling underscores for convention
+                    const tasks = project.tasks.map(({ _id, ...rest }) => {return { ...rest, id:_id }});
+
+                    projectsList.push({ id: project._id, name: project.name, tasks: tasks });
                 }
-                res.json({ status: "success", message: "Projects list found.", data: { projects: projectsList } });
+                res.json({ status: "success", message: "Projects list found.", data: projectsList });
             }
-        });
+        }).lean();
     },
 
     updateById: function (req, res, next) {
