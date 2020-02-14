@@ -131,30 +131,6 @@
                 "done": false,
                 "creationDate": "13/02/2020",
                 "description": "Fourth Description"
-            },
-            "35": {
-                "done": true,
-                "creationDate": "12/02/2020",
-                "finishDate": "13/02/2020",
-                "description": "First Description done"
-            },
-            "37": {
-                "done": true,
-                "creationDate": "12/02/2020",
-                "finishDate": "13/02/2020",
-                "description": "Second Description done"
-            },
-            "38": {
-                "done": true,
-                "creationDate": "12/02/2020",
-                "finishDate": "13/02/2020",
-                "description": "Third Description done"
-            },
-            "39": {
-                "done": true,
-                "creationDate": "12/02/2020",
-                "finishDate": "13/02/2020",
-                "description": "Fourth Description done"
             }
         }
     }

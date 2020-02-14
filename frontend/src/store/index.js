@@ -17,8 +17,8 @@ const debounce = (callback, wait) => (...args) => {
 export default new Vuex.Store({
   state: {
     user: {
-      name: 'André Farinhote',
-      _id: 'asdas',
+      // name: 'André Farinhote',
+      // _id: 'asdas',
     },
     projects: [],
   },
