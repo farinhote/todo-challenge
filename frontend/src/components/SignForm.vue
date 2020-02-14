@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form>
+    <form v-on:submit.prevent>
       <h1>{{ $t("signUp.title") }}</h1>
       <fieldset>
         <legend>{{ $t("signUp.legend") }}</legend>
@@ -14,7 +14,7 @@
         <label for="password">{{ $t("signUp.password") }}</label>
         <input id="password" type="password" v-model="password" required />
 
-        <button type="submit">{{ $t("signUp.submit") }}</button>
+        <button v-on:click="register" type="submit">{{ $t("signUp.submit") }}</button>
       </fieldset>
     </form>
   </div>

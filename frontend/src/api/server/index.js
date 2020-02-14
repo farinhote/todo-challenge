@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:8080/api/auth/';
+const API_URL = 'http://127.0.0.1:3000/api/';
 
 export default {
   fetchProjects() {
@@ -29,8 +29,8 @@ export default {
   },
 
   register(user) {
-    return axios.post(`${API_URL}signup`, {
-      username: user.username,
+    return axios.post(`${API_URL}users/`, {
+      name: user.name,
       email: user.email,
       password: user.password,
     });

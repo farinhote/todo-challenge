@@ -16,10 +16,7 @@ const debounce = (callback, wait) => (...args) => {
 
 export default new Vuex.Store({
   state: {
-    user: {
-      name: 'André Farinhote',
-      id: '1',
-    },
+    user: {},
     projects: [],
   },
   mutations: {
@@ -27,6 +24,12 @@ export default new Vuex.Store({
       // eslint-disable-next-line no-param-reassign
       state.projects = projects;
     },
+
+    setUser(state, user) {
+      // eslint-disable-next-line no-param-reassign
+      state.user = user.data;
+    },
+
     updateTask(state, task) {
       const {
         projectId, taskId, description, done,
@@ -48,7 +51,13 @@ export default new Vuex.Store({
         .fetchProjects(id)
         .then((projects) => commit('setProjects', projects));
     },
-    // eslint-disable-next-line no-unused-vars
+
+    signUp({ commit }, data) {
+      return client
+        .register(data)
+        .then((user) => commit('setUser', user));
+    },
+
     syncProject(context, projectId) {
       const project = context.state.projects[projectId];
 
