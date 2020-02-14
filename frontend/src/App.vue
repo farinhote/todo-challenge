@@ -35,7 +35,7 @@ export default {
 
 .body {
     padding: 5rem;
-    width: 60vw;
+    width: 70vw;
     margin: auto;
 }
 </style>

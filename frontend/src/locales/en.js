@@ -2,6 +2,7 @@ const ENGLISH_TRANSLATIONS = {
   card: {
     todo: 'To Do',
     done: 'Done',
+    newTask: 'Create New Task',
   },
   header: {
     title: 'To Do',
