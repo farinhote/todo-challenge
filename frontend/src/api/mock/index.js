@@ -10,4 +10,7 @@ export default {
   fetchProjects() {
     return fetch(projects, 250); // wait a bit before returning projects
   },
+  syncProject(project) {
+    return fetch(project, 250); // wait a bit before returning projects
+  },
 };

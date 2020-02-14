@@ -1,5 +1,6 @@
 <template>
     <li>
+        <input type="checkbox" v-model="task.done" @input="checkTask">
         <input v-model="description" />
     </li>
 </template>
@@ -8,7 +9,7 @@
 export default {
   name: 'Task',
   props: {
-    projectId: Number,
+    projectId: String,
     task: {
       type: Object,
       default() {
@@ -23,8 +24,17 @@ export default {
         return this.task.description;
       },
       set(value) {
-        this.$store.commit('updateTask', { value, taskId: this.task.id, projectId: this.projectId });
+        const task = { description: value, taskId: this.task.id, projectId: this.projectId };
+        this.$store.commit('updateTask', task);
       },
+    },
+  },
+
+  methods: {
+    checkTask() {
+      // Method runs before input value changes
+      const task = { projectId: this.projectId, taskId: this.task.id, done: !this.task.done };
+      this.$store.commit('updateTask', task);
     },
   },
 };
@@ -35,14 +45,9 @@ li {
     text-align: left;
     list-style: none;
 }
-
-span {
-    cursor: pointer;
-}
-
-p {
-
-    border: solid gray;
-    border-width: 1px 0;
+input {
+  border: none;
+  background: transparent;
+  margin: 4px;
 }
 </style>
