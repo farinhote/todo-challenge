@@ -1,7 +1,8 @@
 <template>
     <li>
         <input type="checkbox" v-model="task.done" @input="checkTask">
-        <input v-model="description" />
+        <span v-if="task.done"> {{ description }} </span>
+        <input v-else v-model="description" />
     </li>
 </template>
 
@@ -45,9 +46,19 @@ li {
     text-align: left;
     list-style: none;
 }
+
 input {
   border: none;
   background: transparent;
   margin: 4px;
+  font-size: inherit;
+  font-family:inherit;
+}
+
+span {
+  font-size: inherit;
+  font-family:inherit;
+  margin: 4px;
+  text-decoration: line-through;
 }
 </style>

@@ -1,12 +1,14 @@
 <template>
   <div class="card-container">
     <div class="card-body">
-      <div class="card-title">
+      <div :class="{ done: !todoTasks.length }" class="card-title">
         <h1>{{ project.title }}</h1>
       </div>
+      <h2 v-if="todoTasks.length">{{ $t("card.todo") }}</h2>
       <div class="card-todo">
         <task v-for="task in todoTasks" :key="task.id" :task="task" :projectId="project.id" />
       </div>
+      <h2 v-if="doneTasks.length">{{ $t("card.done") }}</h2>
       <div class="card-done">
         <task v-for="task in doneTasks" :key="task.id" :task="task" :projectId="project.id" />
       </div>
@@ -74,5 +76,9 @@ export default {
   color: #333;
   text-align: left;
   line-height: 2.5rem;
+}
+
+.done {
+  text-decoration: line-through;
 }
 </style>

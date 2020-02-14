@@ -1,6 +1,7 @@
 const ENGLISH_TRANSLATIONS = {
-  mainPage: {
-    title: 'To Do',
+  card: {
+    todo: 'To Do',
+    done: 'Done',
   },
   header: {
     title: 'To Do',
