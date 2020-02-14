@@ -20,7 +20,7 @@ app.set('secretKey', 'nodeRestApi'); // jwt secret token
 mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 app.get('/', function (req, res) {
-  res.json({ "tutorial": "Build REST API with node.js" });
+  res.json({ "Server": "Is(hopefully) running smoothly" });
 });
 
 app.use('/users', users);
@@ -28,12 +28,12 @@ app.use('/users', users);
 app.use('/projects', validateUser, projects);
 
 function validateUser(req, res, next) {
-  debugger;
   jwt.verify(req.headers['x-access-token'], req.app.get('secretKey'), function (err, decoded) {
     if (err) {
       res.json({ status: "error", message: err.message, data: null });
     } else  {
       // add user id to request
+
       req.body.userId = decoded.id;
       next();
     }
