@@ -1,11 +1,14 @@
 const express = require('express');
 const logger = require('morgan');
 const users = require('./routes/users');
+const projects = require('./routes/projects');
 const mongoose = require('./config/database');
 const bodyParser = require('body-parser');
+var cors = require('cors')
 var jwt = require('jsonwebtoken');
 const app = express();
 
+app.use(cors());
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
@@ -20,24 +23,16 @@ app.get('/', function (req, res) {
   res.json({ "tutorial": "Build REST API with node.js" });
 });
 
-app.all('*', function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  next();
-});
-
 app.use('/users', users);
 
-app.get('/favicon.ico', function (req, res) {
-  res.sendStatus(204);
-});
+app.use('/projects', validateUser, projects);
 
 function validateUser(req, res, next) {
+  debugger;
   jwt.verify(req.headers['x-access-token'], req.app.get('secretKey'), function (err, decoded) {
     if (err) {
       res.json({ status: "error", message: err.message, data: null });
-    } else {
+    } else  {
       // add user id to request
       req.body.userId = decoded.id;
       next();

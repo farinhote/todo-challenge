@@ -56,10 +56,17 @@ export default new Vuex.Store({
         .then((projects) => commit('setProjects', projects));
     },
 
-    signUp({ commit }, data) {
+    signIn({ commit }, data) {
+      return client
+        .signIn(data)
+        .then((user) => commit('setUser', user));
+    },
+
+    // eslint-disable-next-line no-unused-vars
+    signUp(context, data) {
       return client
         .signUp(data)
-        .then((user) => commit('setUser', user.data));
+        .then(context.dispatch('signIn', data));
     },
 
     signOut({ commit }) {

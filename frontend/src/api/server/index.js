@@ -1,31 +1,32 @@
 import axios from 'axios';
 
-const API_URL = 'http://127.0.0.1:3000/api/';
+const API_URL = 'http://127.0.0.1:3000/';
 
 export default {
   fetchProjects() {
     return axios
-      .get('https://someurl')
+      .get(`${API_URL}projects/`)
       .then((response) => response.data);
   },
 
   signIn(user) {
+    debugger;
     return axios
-      .post(`${API_URL}signin`, {
-        username: user.username,
+      .post(`${API_URL}users/signIn`, {
+        email: user.email,
         password: user.password,
       })
       .then((response) => {
-        if (response.data.accessToken) {
-          localStorage.setItem('access_token', JSON.stringify(response.data.accessToken));
+        if (response.data.data.token) {
+          localStorage.setItem('access_token', JSON.stringify(response.data.data.token));
         }
 
-        return response.data;
+        return response.data.data.user;
       });
   },
 
   signUp(user) {
-    return axios.post(`${API_URL}users/`, {
+    return axios.post(`${API_URL}users/signUp`, {
       name: user.name,
       email: user.email,
       password: user.password,
