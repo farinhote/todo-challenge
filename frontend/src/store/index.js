@@ -17,8 +17,6 @@ const debounce = (callback, wait) => (...args) => {
 export default new Vuex.Store({
   state: {
     user: {
-      // name: 'André Farinhote',
-      // _id: 'asdas',
     },
     projects: [],
   },
@@ -39,11 +37,15 @@ export default new Vuex.Store({
         projectId, taskId, description, done,
       } = task;
 
+      const projectIndex = state.projects.findIndex((project) => project.id === projectId);
+      const taskIndex = state.projects[projectIndex].tasks
+        .findIndex((taskElement) => taskElement.id === taskId);
+
       if (description) {
-        state.projects[projectId].tasks[taskId].description = description;
+        state.projects[projectIndex].tasks[taskIndex].description = description;
       }
       if (done !== undefined) {
-        state.projects[projectId].tasks[taskId].done = done;
+        state.projects[projectIndex].tasks[taskIndex].done = done;
       }
 
       debounce(() => { this.dispatch('syncProject', projectId); }, 1000)();
@@ -75,10 +77,11 @@ export default new Vuex.Store({
     },
 
     syncProject(context, projectId) {
-      const project = context.state.projects[projectId];
+      const project = context.state.projects
+        .find((projectElement) => projectElement.id === projectId);
 
       return client
-        .syncProject(project);
+        .syncProject(project, projectId);
     },
   },
 });

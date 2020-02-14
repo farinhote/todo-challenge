@@ -2,7 +2,7 @@
   <div class="card-container">
     <div class="card-body">
       <div :class="{ done: !todoTasks.length }" class="card-title">
-        <h1>{{ project.title }}</h1>
+        <h1>{{ project.name }}</h1>
       </div>
       <h2 v-if="todoTasks.length">{{ $t("card.todo") }}</h2>
       <div class="card-tasks">
@@ -42,10 +42,7 @@ export default {
 
   computed: {
     tasks() {
-      return Object.keys(this.project.tasks).map((id) => ({
-        id,
-        ...this.project.tasks[id],
-      }));
+      return this.project.tasks;
     },
 
     doneTasks() {
