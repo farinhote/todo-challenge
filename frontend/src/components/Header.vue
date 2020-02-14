@@ -13,11 +13,6 @@
         <span>{{ $t("header.signOut") }}</span>
       </router-link>
     </div>
-    <div class="nav" v-else>
-      <router-link to="/sign">
-        <span>{{ $t("header.signUp") }}</span>
-      </router-link>
-    </div>
   </div>
 </template>
 

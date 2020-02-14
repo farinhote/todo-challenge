@@ -1,20 +1,28 @@
 <template>
   <div>
     <form v-on:submit.prevent>
-      <h1>{{ $t("signUp.title") }}</h1>
+      <div class="toggle">
+        <h1 class="toggleUp" :class="{ active: signUp }" @click="toggleUp">
+          {{ $t("sign.signUp") }}
+        </h1>
+        <h1 class="toggleIn" :class="{ active: !signUp }" @click="toggleIn">
+          {{ $t("sign.signIn") }}
+        </h1>
+      </div>
       <fieldset>
-        <legend>{{ $t("signUp.legend") }}</legend>
+        <legend>{{ $t("sign.legend") }}</legend>
 
-        <label for="name">{{ $t("signUp.name") }}</label>
-        <input id="name" type="text" v-model="name" required autofocus />
+        <label v-show="signUp" for="name">{{ $t("sign.name") }}</label>
+        <input v-show="signUp" id="name" type="text" v-model="name" required autofocus />
 
-        <label for="email">{{ $t("signUp.email") }}</label>
+        <label for="email">{{ $t("sign.email") }}</label>
         <input id="email" type="email" v-model="email" required />
 
-        <label for="password">{{ $t("signUp.password") }}</label>
+        <label for="password">{{ $t("sign.password") }}</label>
         <input id="password" type="password" v-model="password" required />
 
-        <button v-on:click="register" type="submit">{{ $t("signUp.submit") }}</button>
+        <button v-show="signUp" v-on:click="register" type="submit">{{ $t("sign.submit") }}</button>
+        <button v-show="!signUp" v-on:click="login" type="submit">{{ $t("sign.login") }}</button>
       </fieldset>
     </form>
   </div>
@@ -27,6 +35,7 @@ export default {
       name: '',
       email: '',
       password: '',
+      signUp: true,
     };
   },
 
@@ -42,6 +51,24 @@ export default {
         .dispatch('signUp', data)
         .then(() => this.$router.push('/'))
         .catch((err) => console.log(err));
+    },
+    login() {
+      const data = {
+        email: this.email,
+        password: this.password,
+      };
+
+      this.$store
+        .dispatch('signUp', data)
+        .then(() => this.$router.push('/'))
+        .catch((err) => console.log(err));
+    },
+
+    toggleUp() {
+      this.signUp = true;
+    },
+    toggleIn() {
+      this.signUp = false;
     },
   },
 };
@@ -69,9 +96,20 @@ form {
   border-radius: 8px;
 }
 
+.toggle {
+  display: grid;
+  padding-top: 1rem;
+  grid-template-columns: 1fr 1fr;
+}
+
 h1 {
   margin: 0 0 30px 0;
   text-align: center;
+}
+
+.active {
+  background: #2c3e50;
+  color: white
 }
 
 input {
