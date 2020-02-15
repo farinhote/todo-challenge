@@ -20,7 +20,7 @@
       <button class="create-button" type="submit" @click="createTask" >
         {{ $t("card.newTask") }}
       </button>
-      <input class="create-input" v-model="taskName" type="text"/>
+      <input class="create-input" @keyup.enter="createTask" v-model="taskName" type="text"/>
     </div>
   </div>
 </template>

@@ -3,7 +3,7 @@
     <input class="check" type="checkbox" v-model="task.done" @input="checkTask">
     <div class="description done" v-if="task.done"> {{ description }} </div>
     <input class="description todo" v-else v-model="description" />
-    <button class="delete-button"  @click="deleteTask">X</button>
+    <button class="delete-button" v-if="!task.done" @click="deleteTask">X</button>
   </li>
 </template>
 

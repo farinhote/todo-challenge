@@ -1,11 +1,11 @@
 <template>
   <div class="header">
     <h1 class="title">{{ $t("header.title") }}</h1>
-    <div class="create-project">
+    <div v-show="this.$store.state.user.name" class="create-project">
       <button class="header-button create-button" type="submit" @click="createProject" >
         {{ $t("header.newProject") }}
       </button>
-      <input class="create-input" v-model="projectName" type="text"/>
+      <input class="create-input" @keyup.enter="createProject" v-model="projectName" type="text"/>
     </div>
     <div class="user" v-if="this.$store.state.user.name">
       <button class="header-button" v-on:click="signOut">{{ $t("header.signOut") }}</button>
