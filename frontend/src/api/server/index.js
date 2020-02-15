@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://127.0.0.1:3000/';
+const API_URL = 'http://127.0.0.1:3001/';
 const PROJECTS = 'projects/';
 const USERS = 'users/';
 
@@ -18,7 +18,6 @@ export default {
   },
 
   signIn(user) {
-    debugger;
     return axios
       .post(`${API_URL}${USERS}signIn`, {
         email: user.email,

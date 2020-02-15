@@ -28,7 +28,8 @@ app.use('/users', users);
 app.use('/projects', validateUser, projects);
 
 function validateUser(req, res, next) {
-  jwt.verify(req.headers['x-access-token'], req.app.get('secretKey'), function (err, decoded) {
+  console.log(req.headers);
+  jwt.verify(req.headers.authorization, req.app.get('secretKey'), function (err, decoded) {
     if (err) {
       res.json({ status: "error", message: err.message, data: null });
     } else  {

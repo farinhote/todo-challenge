@@ -23,7 +23,7 @@ export default new Vuex.Store({
   mutations: {
     setProjects(state, projects) {
       // eslint-disable-next-line no-param-reassign
-      state.projects = projects;
+      state.projects = projects.data;
     },
 
     setUser(state, user) {
