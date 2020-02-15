@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 // eslint-disable-next-line import/no-unresolved
 import client from 'api-client';
+import lodash from 'lodash';
 
 Vue.use(Vuex);
 
@@ -66,18 +67,33 @@ export default new Vuex.Store({
         .syncProject(project, projectId);
     },
 
+    createProject(context, project) {
+      client.createProject(project)
+        .then(debounce(() => { context.dispatch('fetchProjects'); }, 500)());
+    },
+
+    deleteProject(context, projectId) {
+      client.deleteProject(projectId)
+        .then(debounce(() => { context.dispatch('fetchProjects'); }, 500)());
+    },
+
     createTask(context, { description, projectId }) {
       const project = context.state.projects
         .find((projectElement) => projectElement.id === projectId);
 
       project.tasks.push({ description });
       client.syncProject(project, projectId)
-        .then(context.dispatch('fetchProjects'));
+        .then(debounce(() => { context.dispatch('fetchProjects'); }, 500)());
     },
 
-    createProject(context, project) {
-      client.createProject(project)
-        .then(context.dispatch('fetchProjects'));
+    deleteTask(context, { projectId, taskId }) {
+      const project = context.state.projects
+        .find((projectElement) => projectElement.id === projectId);
+      const clonedTasks = lodash.cloneDeep(project.tasks);
+
+      project.tasks = clonedTasks.filter((element) => element.id !== taskId);
+      client.syncProject(project, projectId)
+        .then(debounce(() => { context.dispatch('fetchProjects'); }, 500)());
     },
 
     // eslint-disable-next-line no-unused-vars

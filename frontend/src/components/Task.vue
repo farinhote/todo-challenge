@@ -3,7 +3,7 @@
     <input class="check" type="checkbox" v-model="task.done" @input="checkTask">
     <div class="description done" v-if="task.done"> {{ description }} </div>
     <input class="description todo" v-else v-model="description" />
-    <button class="delete-button">X</button>
+    <button class="delete-button"  @click="deleteTask">X</button>
   </li>
 </template>
 
@@ -37,6 +37,11 @@ export default {
       // Method runs before input value changes
       const task = { projectId: this.projectId, taskId: this.task.id, done: !this.task.done };
       this.$store.commit('updateTask', task);
+    },
+
+    deleteTask() {
+      const task = { projectId: this.projectId, taskId: this.task.id };
+      this.$store.dispatch('deleteTask', task);
     },
   },
 };

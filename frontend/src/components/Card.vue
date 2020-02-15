@@ -4,7 +4,7 @@
       <h1 :class="{ 'title-done': !todoTasks.length && doneTasks.length }" class="title">
         {{ project.name }}
       </h1>
-      <button class="delete-button">X</button>
+      <button class="delete-button"  @click="deleteProject">X</button>
     </div>
     <div class="tasks">
       <h2 v-if="todoTasks.length">{{ $t("card.todo") }}</h2>
@@ -55,6 +55,11 @@ export default {
         .dispatch('createTask', { description: this.taskName, projectId: this.project.id });
 
       this.taskName = '';
+    },
+
+    deleteProject() {
+      this.$store
+        .dispatch('deleteProject', this.project.id);
     },
   },
 
