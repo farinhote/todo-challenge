@@ -58,9 +58,9 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    fetchProjects({ commit }, id) {
+    fetchProjects({ commit }) {
       return client
-        .fetchProjects(id)
+        .fetchProjects()
         .then((projects) => commit('setProjects', projects));
     },
 
@@ -79,6 +79,11 @@ export default new Vuex.Store({
       project.tasks.push({ description });
       client.syncProject(project, projectId)
         .then((data) => context.commit('setProject', { data, projectId }));
+    },
+
+    createProject(context, project) {
+      client.createProject(project)
+        .then(context.dispatch('fetchProjects'));
     },
 
     // eslint-disable-next-line no-unused-vars

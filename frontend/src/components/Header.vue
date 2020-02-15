@@ -1,8 +1,14 @@
 <template>
   <div class="header">
     <h1 class="title">{{ $t("header.title") }}</h1>
+    <div class="create-project">
+      <button class="header-button create-button" type="submit" @click="createProject" >
+        {{ $t("header.newProject") }}
+      </button>
+      <input class="create-input" v-model="projectName" type="text"/>
+    </div>
     <div class="user" v-if="this.$store.state.user.name">
-      <button class="sign-out" v-on:click="signOut">{{ $t("header.signOut") }}</button>
+      <button class="header-button" v-on:click="signOut">{{ $t("header.signOut") }}</button>
       <h1 class="username">{{ this.$store.state.user.name }}</h1>
     </div>
   </div>
@@ -11,7 +17,16 @@
 <script>
 export default {
   name: 'Header',
+  data() {
+    return {
+      projectName: '',
+    };
+  },
   methods: {
+    createProject() {
+      this.$store
+        .dispatch('createProject', { name: this.projectName });
+    },
     signOut() {
       this.$store
         .dispatch('signOut')
@@ -25,24 +40,13 @@ export default {
 <style scoped>
 .header {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 2fr;
   background-color: #cc6347;
   border-bottom: 0.25rem solid #2c3e50;
   padding: 0 2rem;
 }
 
-.title {
-  grid-column: 1;
-}
-
-.user {
-  grid-column: 2;
-  display: grid;
-  grid-template-columns: 1fr 1fr 2fr;
-  align-items: center
-}
-
-.sign-out {
+.header-button {
   grid-column: 2;
   padding: 0.5rem;
   border-radius: 0.5rem;
@@ -54,6 +58,33 @@ export default {
   color: #2c3e50;
   outline: 0;
   cursor: pointer;
+}
+
+.create-project {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+}
+.create-button {
+  flex: 1;
+  border-radius: 0.5rem 0 0 0.5rem;
+  text-align: center;
+  outline: 0;
+  cursor: pointer;
+}
+.create-input {
+  flex: 1;
+  height: 30px;
+  border-radius: 0 0.5rem 0.5rem 0;
+  font-size: inherit;
+  font-family:inherit;
+  outline: 0;
+}
+
+.user {
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr;
+  align-items: center;
 }
 
 .username {

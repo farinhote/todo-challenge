@@ -11,6 +11,11 @@ export default {
       .then((response) => response.data);
   },
 
+  createProject(project) {
+    return axios.post(`${API_URL}${PROJECTS}`, project)
+      .then(Promise.resolve());
+  },
+
   syncProject(project, projectId) {
     return axios.put(`${API_URL}${PROJECTS}${projectId}`, project)
       .then((response) => response.data);

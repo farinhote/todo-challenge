@@ -6,6 +6,7 @@ const ENGLISH_TRANSLATIONS = {
   },
   header: {
     title: 'To Do Challenge',
+    newProject: 'Create New Project',
     signUp: 'Sign Up',
     signIn: 'Sign In',
     signOut: 'Sign Out',
