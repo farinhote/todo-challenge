@@ -16,6 +16,10 @@ const routes = [
     name: 'Login',
     component: Sign,
   },
+  {
+    path: '*',
+    redirect: '/',
+  },
 ];
 
 const router = new VueRouter({
