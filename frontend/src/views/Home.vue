@@ -25,7 +25,11 @@ export default {
   },
 
   created() {
-    this.$store.dispatch('fetchProjects');
+    if (!this.$store.state.user.name) {
+      this.$router.push('/sign');
+    } else {
+      this.$store.dispatch('fetchProjects');
+    }
   },
 };
 </script>

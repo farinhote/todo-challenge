@@ -73,6 +73,13 @@ export default {
       this.signUp = signUp;
     },
   },
+
+  created() {
+    debugger;
+    if (this.$store.state.user.name) {
+      this.$router.push('/');
+    }
+  },
 };
 </script>
 
