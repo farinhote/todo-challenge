@@ -113,7 +113,6 @@ export default new Vuex.Store({
     },
 
     signIn({ commit }, user) {
-      debugger;
       return client
         .signIn(user)
         .then((signedInUser) => { commit('setUser', signedInUser); })
