@@ -1,15 +1,9 @@
 <template>
   <div class="header">
-    <div class="presentation">
-      <router-link to="/">
-        <div class="presentationText">
-          <h1>{{ $t("header.title") }}</h1>
-        </div>
-      </router-link>
-    </div>
-    <div class="nav" v-if="this.$store.state.user._id">
-      <span>{{ this.$store.state.user.name }}</span>
-      <a v-on:click="signOut">{{ $t("header.signOut") }}</a>
+    <h1 class="title">{{ $t("header.title") }}</h1>
+    <div class="user" v-if="this.$store.state.user._id">
+      <button class="sign-out" v-on:click="signOut">{{ $t("header.signOut") }}</button>
+      <h1 class="username">{{ this.$store.state.user.name }}</h1>
     </div>
   </div>
 </template>
@@ -31,50 +25,39 @@ export default {
 <style scoped>
 .header {
   display: grid;
-  background: rgb(204, 99, 71);
-  width: 100vw;
-  z-index: 1;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: 1fr 1fr;
+  background-color: #cc6347;
+  border-bottom: 0.25rem solid #2c3e50;
+  padding: 0 2rem;
 }
 
-.presentation {
-  text-align: left;
+.title {
+  grid-column: 1;
+}
+
+.user {
   grid-column: 2;
-}
-
-.presentation a {
-    text-decoration: inherit;
-    cursor: pointer;
-}
-
-.nav {
-  grid-column: 3/5;
-
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  align-items: center;
-  font-size: 30px;
+  grid-template-columns: 1fr 1fr 2fr;
+  align-items: center
 }
 
-.nav a {
-  font-weight: bold;
-  color: #2c3e50;
+.sign-out {
+  grid-column: 2;
   padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid #2c3e50;
+  box-shadow: 0 -2px 0 #2c3e50 inset;
+  background-color: rgb(223, 217, 217);
+  font-weight: bold;
+  font-size: 1rem;
+  color: #2c3e50;
+  outline: 0;
+  cursor: pointer;
 }
 
-.header a.router-link-exact-active {
-  color: #42b983;
-}
-
-.nav span {
-  grid-column: 2/4;
-  text-align: right;
-}
-
-.nav a:nth-child(1) {
+.username {
   grid-column: 3;
-}
-.nav a:nth-child(2) {
-  grid-column: 4;
+  text-align: right;
 }
 </style>
