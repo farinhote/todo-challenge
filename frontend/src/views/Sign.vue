@@ -40,6 +40,8 @@ export default {
 
   methods: {
     submit() {
+      debugger;
+
       if (this.signUp) {
         this.dispatchSignUp();
       } else {
@@ -65,7 +67,7 @@ export default {
       };
 
       this.$store
-        .dispatch('signUp', data)
+        .dispatch('signIn', data)
         .then(() => this.$router.push('/'))
         .catch((err) => console.log(err));
     },

@@ -17,15 +17,19 @@ const debounce = (callback, wait) => (...args) => {
 export default new Vuex.Store({
   state: {
     user: {
-      name: 'André Farinhote',
-      _id: 'asdas',
     },
     projects: [],
   },
   mutations: {
     setProjects(state, projects) {
       // eslint-disable-next-line no-param-reassign
-      state.projects = projects;
+      state.projects = projects.data;
+    },
+
+    setProject(state, { data, projectId }) {
+      const projectIndex = state.projects.findIndex((element) => element.id === projectId);
+      // eslint-disable-next-line no-param-reassign
+      state.projects[projectIndex] = data.data;
     },
 
     setUser(state, user) {
@@ -39,11 +43,15 @@ export default new Vuex.Store({
         projectId, taskId, description, done,
       } = task;
 
+      const projectIndex = state.projects.findIndex((project) => project.id === projectId);
+      const taskIndex = state.projects[projectIndex].tasks
+        .findIndex((taskElement) => taskElement.id === taskId);
+
       if (description) {
-        state.projects[projectId].tasks[taskId].description = description;
+        state.projects[projectIndex].tasks[taskIndex].description = description;
       }
       if (done !== undefined) {
-        state.projects[projectId].tasks[taskId].done = done;
+        state.projects[projectIndex].tasks[taskIndex].done = done;
       }
 
       debounce(() => { this.dispatch('syncProject', projectId); }, 1000)();
@@ -56,22 +64,39 @@ export default new Vuex.Store({
         .then((projects) => commit('setProjects', projects));
     },
 
-    signUp({ commit }, data) {
+    syncProject(context, projectId) {
+      const project = context.state.projects
+        .find((projectElement) => projectElement.id === projectId);
+
+      return client
+        .syncProject(project, projectId);
+    },
+
+    createTask(context, { description, projectId }) {
+      const project = context.state.projects
+        .find((projectElement) => projectElement.id === projectId);
+
+      project.tasks.push({ description });
+      client.syncProject(project, projectId)
+        .then((data) => context.commit('setProject', { data, projectId }));
+    },
+
+    signIn({ commit }, data) {
+      return client
+        .signIn(data)
+        .then((user) => commit('setUser', user));
+    },
+
+    // eslint-disable-next-line no-unused-vars
+    signUp(context, data) {
       return client
         .signUp(data)
-        .then((user) => commit('setUser', user.data));
+        .then(context.dispatch('signIn', data));
     },
 
     signOut({ commit }) {
       commit('setUser', { data: {} });
       return Promise.resolve();
-    },
-
-    syncProject(context, projectId) {
-      const project = context.state.projects[projectId];
-
-      return client
-        .syncProject(project);
     },
   },
 });

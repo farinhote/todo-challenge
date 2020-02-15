@@ -1,7 +1,9 @@
 <template>
   <div class="card">
     <div class="header">
-      <h1 :class="{ 'title-done': !todoTasks.length }" class="title">{{ project.title }}</h1>
+      <h1 :class="{ 'title-done': !todoTasks.length && doneTasks.length }" class="title">
+        {{ project.name }}
+      </h1>
       <button class="delete-button">X</button>
     </div>
     <div class="tasks">
@@ -15,8 +17,10 @@
       </div>
     </div>
     <div class="footer">
-      <button class="create-button" type="submit">{{ $t("card.newTask") }}</button>
-      <input class="create-input" type="text"/>
+      <button class="create-button" type="submit" @click="createTask" >
+        {{ $t("card.newTask") }}
+      </button>
+      <input class="create-input" v-model="taskName" type="text"/>
     </div>
   </div>
 </template>
@@ -30,6 +34,12 @@ export default {
     Task,
   },
 
+  data() {
+    return {
+      taskName: '',
+    };
+  },
+
   props: {
     project: {
       type: Object,
@@ -39,12 +49,16 @@ export default {
     },
   },
 
+  methods: {
+    createTask() {
+      this.$store
+        .dispatch('createTask', { description: this.taskName, projectId: this.project.id });
+    },
+  },
+
   computed: {
     tasks() {
-      return Object.keys(this.project.tasks).map((id) => ({
-        id,
-        ...this.project.tasks[id],
-      }));
+      return this.project.tasks;
     },
 
     doneTasks() {

@@ -11,7 +11,7 @@ Vue.use(VueI18n);
 Vue.config.productionTip = false;
 Vue.prototype.$http = Axios;
 
-const accessToken = localStorage.getItem('access_token');
+const accessToken = JSON.parse(localStorage.getItem('access_token'));
 
 if (accessToken) {
   Vue.prototype.$http.defaults.headers.common.Authorization = accessToken;
