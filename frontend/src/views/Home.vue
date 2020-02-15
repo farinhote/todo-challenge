@@ -1,10 +1,10 @@
 <template>
-  <div v-if="projects.length">
-    <div class="cards">
-      <card v-for="project in projects" :key="project.id" :project="project" />
-    </div>
+  <div class="cards" v-if="projects.length">
+    <card v-for="project in projects" :key="project.id" :project="project" />
   </div>
-  <spinner v-else />
+  <div class="spinner" v-else>
+    <spinner />
+  </div>
 </template>
 
 <script>
@@ -14,8 +14,8 @@ import Card from '../components/Card.vue';
 export default {
   name: 'Home',
   components: {
-    Spinner,
     Card,
+    Spinner,
   },
 
   computed: {
@@ -32,7 +32,6 @@ export default {
 </script>
 
 <style>
-
 .cards {
   display: grid;
   grid-auto-rows: auto;
@@ -40,4 +39,8 @@ export default {
   grid-template-columns: 1fr 1fr 1fr;
 }
 
+.spinner {
+  display: grid;
+  justify-items: center;
+}
 </style>

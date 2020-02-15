@@ -1,23 +1,22 @@
 <template>
-  <div class="card-container">
-    <div class="card-body">
-      <div :class="{ done: !todoTasks.length }" class="card-title">
-        <h1>{{ project.title }}</h1>
-      </div>
+  <div class="card">
+    <div class="header">
+      <h1 :class="{ 'title-done': !todoTasks.length }" class="title">{{ project.title }}</h1>
+      <button class="delete-button">X</button>
+    </div>
+    <div class="tasks">
       <h2 v-if="todoTasks.length">{{ $t("card.todo") }}</h2>
-      <div class="card-tasks">
-        <div class="card-todo">
-          <task v-for="task in todoTasks" :key="task.id" :task="task" :projectId="project.id" />
-        </div>
-        <h2 v-if="doneTasks.length">{{ $t("card.done") }}</h2>
-        <div class="card-done">
-          <task v-for="task in doneTasks" :key="task.id" :task="task" :projectId="project.id" />
-        </div>
+      <div class="card-todo">
+        <task v-for="task in todoTasks" :key="task.id" :task="task" :projectId="project.id" />
       </div>
-      <div class="card-button">
-        <button type="submit">{{ $t("card.newTask") }}</button>
-        <input type="text" :placeholder="this.$t('card.placeholder')"/>
+      <h2 v-if="doneTasks.length">{{ $t("card.done") }}</h2>
+      <div class="card-done">
+        <task v-for="task in doneTasks" :key="task.id" :task="task" :projectId="project.id" />
       </div>
+    </div>
+    <div class="footer">
+      <button class="create-button" type="submit">{{ $t("card.newTask") }}</button>
+      <input class="create-input" type="text"/>
     </div>
   </div>
 </template>
@@ -59,73 +58,74 @@ export default {
 </script>
 
 <style scoped>
-.card-container {
-  overflow: auto;
-  background: #fff;
-  height: 50vh;
-  border-radius: 6px;
-  box-shadow: rgba(0, 0, 0, 0.2) 0 4px 2px -2px;
-  font-weight: 100;
-  width: 100%;
-  margin: 0.8rem auto;
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 30rem;
+  background: white;
+  border-radius: 0.5rem;
+  border: 1px solid lightgrey;
+  box-shadow: grey 0 4px 2px -2px;
 }
 
-.card-body {
-  position: relative;
-  margin: 0 auto;
-  width: 90%;
-  height: 100%;
+.header {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border-bottom: 2px solid lightgrey;
 }
-
-
-.card-title {
-  position: sticky;
-  padding: 0.1rem;
-  border-bottom: 2px solid rgba(128, 128, 128, 0.5);
-  top: 0px;
-  background: #fff;
-  color: #333;
-  text-align: left;
+.title {
+  flex: 1;
+  margin: 0;
 }
-
-.done {
+.title-done {
   text-decoration: line-through;
 }
-
-.card-tasks {
-  height: 100%;
+.delete-button {
+  height: 2rem;
+  width: 2rem;
+  border-radius: 0.5rem;
+  border: 1px solid lightcoral;
+  background-color: lightcoral;
+  font-size: 1rem;
+  color: white;
+  outline: 0;
+  cursor: pointer;
 }
 
-.card-button {
-  display: grid;
-  grid-gap: 6px;
-  grid-template-columns: 1fr 1fr;
-  position: sticky;
-  padding: 1rem;
-  background: #fff;
-  border-top: 2px solid rgba(128, 128, 128, 0.5);
-  bottom: 0px;
+.tasks {
+  flex: 1;
+  padding: 0 2rem;
+  overflow: scroll;
 }
-
-button {
-  grid-column: 1/2;
-  background-color: #4bc970;
-
-  color: #fff;
-  font-size: 18px;
+.tasks h2 {
   text-align: center;
-
-  border-radius: 5px;
-  border: 1px solid #3ac162;
-  border-width: 1px 1px 3px;
-  box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.1) inset;
 }
 
-input {
-  width: 100%;
-  border-bottom: 1px solid gray;
-  background: transparent;
+.footer {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border-top: 2px solid lightgrey;
+}
+.create-button {
+  flex: 1;
+  height: 30px;
+  border-radius: 0.5rem 0 0 0.5rem;
+  border: 1px solid lightseagreen;
+  background-color: lightseagreen;
+  font-size: 1.25rem;
+  color: white;
+  text-align: center;
+  outline: 0;
+  cursor: pointer;
+}
+.create-input {
+  flex: 1;
+  height: 25px;
+  border-radius: 0 0.5rem 0.5rem 0;
   font-size: inherit;
   font-family:inherit;
+  outline: 0;
 }
 </style>
