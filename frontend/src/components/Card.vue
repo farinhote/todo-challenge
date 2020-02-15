@@ -53,6 +53,8 @@ export default {
     createTask() {
       this.$store
         .dispatch('createTask', { description: this.taskName, projectId: this.project.id });
+
+      this.taskName = '';
     },
   },
 

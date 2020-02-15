@@ -26,6 +26,8 @@ export default {
     createProject() {
       this.$store
         .dispatch('createProject', { name: this.projectName });
+
+      this.projectName = '';
     },
     signOut() {
       this.$store
