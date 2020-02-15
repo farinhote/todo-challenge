@@ -26,12 +26,6 @@ export default new Vuex.Store({
       state.projects = projects.data;
     },
 
-    setProject(state, { data, projectId }) {
-      const projectIndex = state.projects.findIndex((element) => element.id === projectId);
-      // eslint-disable-next-line no-param-reassign
-      state.projects[projectIndex] = data.data;
-    },
-
     setUser(state, user) {
       localStorage.setItem('user', JSON.stringify(user));
       // eslint-disable-next-line no-param-reassign
@@ -78,7 +72,7 @@ export default new Vuex.Store({
 
       project.tasks.push({ description });
       client.syncProject(project, projectId)
-        .then((data) => context.commit('setProject', { data, projectId }));
+        .then(context.dispatch('fetchProjects'));
     },
 
     createProject(context, project) {
