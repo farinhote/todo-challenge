@@ -3,6 +3,7 @@ import Vuex from 'vuex';
 // eslint-disable-next-line import/no-unresolved
 import client from 'api-client';
 import lodash from 'lodash';
+import VueRouter from '../router/index';
 
 Vue.use(Vuex);
 
@@ -102,17 +103,21 @@ export default new Vuex.Store({
         .then(debounce(() => { context.dispatch('fetchProjects'); }, 500)());
     },
 
-    // eslint-disable-next-line no-unused-vars
     signUp(context, user) {
       return client
         .signUp(user)
-        .then(context.dispatch('signIn', user));
+        .then(() => {
+          context.dispatch('signIn', user);
+          return true;
+        });
     },
 
     signIn({ commit }, user) {
+      debugger;
       return client
         .signIn(user)
-        .then((signedInUser) => { commit('setUser', signedInUser); });
+        .then((signedInUser) => { commit('setUser', signedInUser); })
+        .then(() => { VueRouter.push('/'); });
     },
 
     signOut({ commit }) {

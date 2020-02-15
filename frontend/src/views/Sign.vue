@@ -54,8 +54,7 @@ export default {
       };
 
       this.$store
-        .dispatch('signUp', user)
-        .then(() => this.$router.push('/'));
+        .dispatch('signUp', user);
     },
     dispatchSignIn() {
       const data = {
@@ -64,8 +63,7 @@ export default {
       };
 
       this.$store
-        .dispatch('signIn', data)
-        .then(() => this.$router.push('/'));
+        .dispatch('signIn', data);
     },
     toggleMode(signUp) {
       this.signUp = signUp;
