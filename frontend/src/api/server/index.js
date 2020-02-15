@@ -11,7 +11,6 @@ export default {
       .then((response) => response.data);
   },
 
-
   syncProject(project, projectId) {
     return axios.put(`${API_URL}${PROJECTS}${projectId}`, project)
       .then((response) => response.data);
@@ -35,6 +34,7 @@ export default {
 
         if (token) {
           localStorage.setItem('access_token', JSON.stringify(token));
+          axios.defaults.headers.common.Authorization = token;
         }
 
         return signedInUser;

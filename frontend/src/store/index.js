@@ -111,6 +111,9 @@ export default new Vuex.Store({
 
     signOut({ commit }) {
       commit('setUser', { data: {} });
+      commit('setProjects', { data: [] });
+
+      localStorage.removeItem('access_token');
       return Promise.resolve();
     },
   },
