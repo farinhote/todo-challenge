@@ -3,7 +3,8 @@
     <card v-for="project in projects" :key="project.id" :project="project" />
   </div>
   <div class="spinner" v-else>
-    <spinner />
+    <spinner v-if="!hasLoaded" />
+    <h1 v-else >{{ $t("home.createProject") }}</h1>
   </div>
 </template>
 
@@ -18,6 +19,12 @@ export default {
     Spinner,
   },
 
+  data() {
+    return {
+      hasLoaded: false,
+    };
+  },
+
   computed: {
     projects() {
       return this.$store.state.projects;
@@ -28,7 +35,8 @@ export default {
     if (!this.$store.state.user.name) {
       this.$router.push('/sign');
     } else {
-      this.$store.dispatch('fetchProjects');
+      this.$store.dispatch('fetchProjects')
+        .then(() => { this.hasLoaded = true; });
     }
   },
 };

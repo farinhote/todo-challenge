@@ -25,6 +25,7 @@ export default new Vuex.Store({
     setProjects(state, projects) {
       // eslint-disable-next-line no-param-reassign
       state.projects = projects.data;
+      return projects.data;
     },
 
     setUser(state, user) {
@@ -58,7 +59,10 @@ export default new Vuex.Store({
     fetchProjects({ commit }) {
       return client
         .fetchProjects()
-        .then((projects) => commit('setProjects', projects));
+        .then((projects) => {
+          commit('setProjects', projects);
+          return projects.data;
+        });
     },
 
     syncProject(context, projectId) {

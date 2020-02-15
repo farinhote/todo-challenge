@@ -19,6 +19,9 @@ const ENGLISH_TRANSLATIONS = {
     password: 'Password',
     go: 'Go',
   },
+  home: {
+    createProject: 'Go ahead and create a new project.',
+  },
 };
 
 export default ENGLISH_TRANSLATIONS;

@@ -75,7 +75,6 @@ export default {
   },
 
   created() {
-    debugger;
     if (this.$store.state.user.name) {
       this.$router.push('/');
     }
