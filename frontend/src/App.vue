@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <Header class="header" />
-    <router-view class="body"/>
+    <Header />
+    <router-view class="view"/>
   </div>
 </template>
 
@@ -21,21 +21,13 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-.header {
-  top: 0;
-  left: 0;
-  position: fixed;
-  border-bottom: 2px solid gray;
-}
-
-
-.body {
-    padding: 5rem;
-    width: 70vw;
-    margin: auto;
+.view {
+  flex: 1;
+  padding: 1rem 5rem;
 }
 </style>
