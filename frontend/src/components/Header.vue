@@ -32,8 +32,7 @@ export default {
     signOut() {
       this.$store
         .dispatch('signOut')
-        .then(() => this.$router.push('/sign'))
-        .catch((err) => console.log(err));
+        .then(() => this.$router.push('/sign'));
     },
   },
 };

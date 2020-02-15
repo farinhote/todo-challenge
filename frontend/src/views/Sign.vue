@@ -55,8 +55,7 @@ export default {
 
       this.$store
         .dispatch('signUp', user)
-        .then(() => this.$router.push('/'))
-        .catch((err) => console.log(err));
+        .then(() => this.$router.push('/'));
     },
     dispatchSignIn() {
       const data = {
@@ -66,8 +65,7 @@ export default {
 
       this.$store
         .dispatch('signIn', data)
-        .then(() => this.$router.push('/'))
-        .catch((err) => console.log(err));
+        .then(() => this.$router.push('/'));
     },
     toggleMode(signUp) {
       this.signUp = signUp;
