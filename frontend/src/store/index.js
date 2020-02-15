@@ -81,17 +81,17 @@ export default new Vuex.Store({
         .then((data) => context.commit('setProject', { data, projectId }));
     },
 
-    signIn({ commit }, data) {
+    // eslint-disable-next-line no-unused-vars
+    signUp(context, user) {
       return client
-        .signIn(data)
-        .then((user) => commit('setUser', user));
+        .signUp(user)
+        .then(context.dispatch('signIn', user));
     },
 
-    // eslint-disable-next-line no-unused-vars
-    signUp(context, data) {
+    signIn({ commit }, user) {
       return client
-        .signUp(data)
-        .then(context.dispatch('signIn', data));
+        .signIn(user)
+        .then((signedInUser) => { commit('setUser', signedInUser); });
     },
 
     signOut({ commit }) {

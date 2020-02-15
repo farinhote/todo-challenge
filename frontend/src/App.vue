@@ -13,6 +13,20 @@ export default {
   components: {
     Header,
   },
+
+  created() {
+    if (localStorage.getItem('access_token')) {
+      const user = JSON.parse(localStorage.getItem('user'));
+      if (user) {
+        this.$store.commit('setUser', user);
+      // } else {
+      //   //implement backend function to validate token and bring user info.
+      //
+      }
+    } else {
+      this.$router.push('/sign');
+    }
+  },
 };
 </script>
 

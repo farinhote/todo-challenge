@@ -40,8 +40,6 @@ export default {
 
   methods: {
     submit() {
-      debugger;
-
       if (this.signUp) {
         this.dispatchSignUp();
       } else {
@@ -49,14 +47,14 @@ export default {
       }
     },
     dispatchSignUp() {
-      const data = {
+      const user = {
         name: this.name,
         email: this.email,
         password: this.password,
       };
 
       this.$store
-        .dispatch('signUp', data)
+        .dispatch('signUp', user)
         .then(() => this.$router.push('/'))
         .catch((err) => console.log(err));
     },

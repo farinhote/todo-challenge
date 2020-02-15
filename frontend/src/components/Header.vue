@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <h1 class="title">{{ $t("header.title") }}</h1>
-    <div class="user" v-if="this.$store.state.user.id">
+    <div class="user" v-if="this.$store.state.user.name">
       <button class="sign-out" v-on:click="signOut">{{ $t("header.signOut") }}</button>
       <h1 class="username">{{ this.$store.state.user.name }}</h1>
     </div>
