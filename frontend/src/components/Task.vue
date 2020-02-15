@@ -1,7 +1,9 @@
 <template>
   <li class="task">
     <input class="check" type="checkbox" v-model="task.done" @input="checkTask">
-    <div class="description done" v-if="task.done"> {{ description }} </div>
+    <div class="description done" v-if="task.done"> {{ description }}
+      <span class="tooltiptext"> {{ task.finishDate }} </span>
+    </div>
     <input class="description todo" v-else v-model="description" />
     <button class="delete-button" v-if="!task.done" @click="deleteTask">X</button>
   </li>
@@ -82,5 +84,30 @@ li {
   color: lightcoral;
   outline: 0;
   cursor: pointer;
+}
+
+.done {
+  position: relative;
+}
+
+.done .tooltiptext {
+  visibility: hidden;
+  width: 8rem;
+  background-color: rgb(121, 105, 105);
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.done:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
 }
 </style>

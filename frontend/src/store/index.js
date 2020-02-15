@@ -41,12 +41,14 @@ export default new Vuex.Store({
       const projectIndex = state.projects.findIndex((project) => project.id === projectId);
       const taskIndex = state.projects[projectIndex].tasks
         .findIndex((taskElement) => taskElement.id === taskId);
+      const today = new Date().toLocaleDateString('pt');
 
       if (description) {
         state.projects[projectIndex].tasks[taskIndex].description = description;
       }
       if (done !== undefined) {
         state.projects[projectIndex].tasks[taskIndex].done = done;
+        state.projects[projectIndex].tasks[taskIndex].finishDate = today;
       }
 
       debounce(() => { this.dispatch('syncProject', projectId); }, 1000)();
