@@ -96,7 +96,7 @@ export default {
 .tasks {
   flex: 1;
   padding: 0 2rem;
-  overflow: scroll;
+  overflow: auto;
 }
 .tasks h2 {
   text-align: center;
