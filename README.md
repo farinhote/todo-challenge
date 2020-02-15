@@ -4,23 +4,31 @@
 
 1. Open 2 terminals:
 
+```
 cd ${repo_root}/frontend 
 npm install
+```
 
 2. After npm install, run the script to serve the frontend
 
+```
 npm run serve
+```
 
 ### That serves and hot reloads changes on the frontend
 
 3. On the second terminal:
 
+```
 cd ${repo_root}/backend 
 npm install
+```
 
 4. After npm install, run the the server
 
+```
 node server.js
+```
 
 ### That turns on the service and auto connects to remote mongoDB
 
