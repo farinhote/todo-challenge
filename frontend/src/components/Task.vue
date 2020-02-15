@@ -1,9 +1,10 @@
 <template>
-    <li>
-        <input type="checkbox" v-model="task.done" @input="checkTask">
-        <span v-if="task.done"> {{ description }} </span>
-        <input v-else v-model="description" />
-    </li>
+  <li class="task">
+    <input class="check" type="checkbox" v-model="task.done" @input="checkTask">
+    <div class="description done" v-if="task.done"> {{ description }} </div>
+    <input class="description todo" v-else v-model="description" />
+    <button class="delete-button">X</button>
+  </li>
 </template>
 
 <script>
@@ -43,22 +44,38 @@ export default {
 
 <style scoped>
 li {
-    text-align: left;
-    list-style: none;
+  list-style: none;
+  display: flex;
 }
 
-input {
+.check {
+  transform: scale(1.5);
+  margin-right: 1rem;
+}
+
+.description {
+  flex: 1;
+  font-size: inherit;
+  font-family: inherit;
+  outline: 0;
+}
+.description.done {
+  text-decoration: line-through;
+}
+.description.todo {
   border: none;
   background: transparent;
-  margin: 4px;
-  font-size: inherit;
-  font-family:inherit;
 }
 
-span {
-  font-size: inherit;
-  font-family:inherit;
-  margin: 4px;
-  text-decoration: line-through;
+.delete-button {
+  height: 1.5rem;
+  width: 1.5rem;
+  margin-left: 1rem;
+  border: none;
+  background-color: white;
+  font-size: 1rem;
+  color: lightcoral;
+  outline: 0;
+  cursor: pointer;
 }
 </style>
