@@ -6,13 +6,12 @@ const TaskSchema = new Schema({
     done: {
         type: Boolean,
         required: true,
-        default: false,
+        default: false
     },
     creationDate: {
         type: String,
         trim: true,
-        required: true,
-        default: new Date().toLocaleDateString("pt"),
+        required: true
     },
     finishDate: {
         type: String,

@@ -30,30 +30,27 @@ module.exports = {
     },
 
     updateById: function (req, res, next) {
+        const today = new Date().toLocaleDateString("pt");
         const tasks = req.body.tasks.map((task) => {
-            if(!task.finishDate && task.done) {
-                task.finishDate = new Date().toLocaleDateString("pt");
-            }
+            if(!task.finishDate && task.done) task.finishDate = today;
+            if(!task.creationDate) task.creationDate = today;
 
             return task;
         })
 
         projectModel.findOneAndUpdate({ ownerId: req.body.userId, _id: req.params.projectId },
-            { name: req.body.name, tasks: tasks }, function (err, project) {
-                if (err)
-                    next(err);
-                else {
-                    projectModel
-                        .findById({ ownerId: req.body.userId, _id: req.params.projectId }, function(err, updatedProject) {
-                            const tasks = updatedProject.tasks.map(({ _id, ...rest }) => {return { ...rest, id:_id }});
+            { name: req.body.name, tasks: tasks }, { new: true },
+                function (err, project) {
+                    if (err)
+                        next(err);
+                    else {
+                        const tasks = project.tasks.map(({ _id, ...rest }) => {return { ...rest, id:_id }});
 
-                            res.json({ status: "success", message: "Project updated successfully.", 
-                                data: { id: updatedProject._id, name: updatedProject.name, tasks: tasks } 
-                            });
-                        }
-                    ).lean()
+                        res.json({ status: "success", message: "Project updated successfully.", 
+                            data: { id: project._id, name: project.name, tasks: tasks } 
+                        });
+                    }
                 }
-            }
         ).lean();
     },
 
